@@ -1,0 +1,41 @@
+1. 2 McGill Net, 2 Computer
+2. 1 McGill net, 1 home net, 2 computers
+3. 2 home net, 2 computers
+4. pernol hot spot, 2 computers
+
+Wireshark test
+
+Function testing
+
+Extra: all above, 1 computer
+
+/*string loginNotice = "new_log_in:";
+                string logoffNotice = "log_off:";
+                string connectNotice = "connection_from:";
+
+                int loginExist = currentLine.IndexOf(loginNotice);
+                int logoffExist = currentLine.IndexOf(logoffNotice);
+                int connectExist = currentLine.IndexOf(connectNotice);*/
+
+
+                //userName = (string)info["userName"];
+                //myPublicIP = (string)info["publibIp"];
+                //myPrivateIP = (string)info["privateIp"];
+
+                //perform actions based on type.
+
+
+                //New Login
+                /*if (loginExist >= 0)
+                {
+                    currentLine = currentLine.Substring(loginNotice.Length - 1);
+                } else
+                {
+                    if (logoffExist >= 0)
+                    {
+                        currentLine = currentLine.Substring(logoffNotice.Length - 1);
+                    }
+                }*/
+                //string Line = "{CPU: 'Intel',Drives: ['DVD read/writer','500 gigabyte hard drive']}";
+                //JObject info = JObject.Parse(Line);
+                //JObject info = JObject.Parse(currentLine);

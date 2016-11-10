@@ -1,0 +1,26 @@
+c:\users\user\documents\visual studio 2015\Projects\TelecomClientC\TelecomClientC\bin\Debug\TelecomClientC.exe
+c:\users\user\documents\visual studio 2015\Projects\TelecomClientC\TelecomClientC\bin\Debug\TelecomClientC.pdb
+c:\users\user\documents\visual studio 2015\Projects\TelecomClientC\TelecomClientC\obj\Debug\TelecomClientC.csprojResolveAssemblyReference.cache
+c:\users\user\documents\visual studio 2015\Projects\TelecomClientC\TelecomClientC\obj\Debug\TelecomClientC.Form1.resources
+c:\users\user\documents\visual studio 2015\Projects\TelecomClientC\TelecomClientC\obj\Debug\TelecomClientC.Properties.Resources.resources
+c:\users\user\documents\visual studio 2015\Projects\TelecomClientC\TelecomClientC\obj\Debug\TelecomClientC.csproj.GenerateResource.Cache
+c:\users\user\documents\visual studio 2015\Projects\TelecomClientC\TelecomClientC\obj\Debug\TelecomClientC.exe
+c:\users\user\documents\visual studio 2015\Projects\TelecomClientC\TelecomClientC\obj\Debug\TelecomClientC.pdb
+C:\Users\ringg_000\Desktop\ECSE 414\Project\TelecomClientC\TelecomClientC\obj\Debug\TelecomClientC.exe
+C:\Users\ringg_000\Desktop\ECSE 414\Project\TelecomClientC\TelecomClientC\obj\Debug\TelecomClientC.pdb
+C:\Users\ringg_000\Desktop\ECSE 414\Project\TelecomClientC\TelecomClientC\bin\Debug\TelecomClientC.exe
+C:\Users\ringg_000\Desktop\ECSE 414\Project\TelecomClientC\TelecomClientC\bin\Debug\TelecomClientC.pdb
+C:\Users\ringg_000\Desktop\ECSE 414\Project\TelecomClientC\TelecomClientC\obj\Debug\TelecomClientC.csprojResolveAssemblyReference.cache
+C:\Users\ringg_000\Desktop\ECSE 414\Project\TelecomClientC\TelecomClientC\obj\Debug\TelecomClientC.Form1.resources
+C:\Users\ringg_000\Desktop\ECSE 414\Project\TelecomClientC\TelecomClientC\obj\Debug\TelecomClientC.Properties.Resources.resources
+C:\Users\ringg_000\Desktop\ECSE 414\Project\TelecomClientC\TelecomClientC\obj\Debug\TelecomClientC.csproj.GenerateResource.Cache
+C:\Google Drive\ECSE 414\TelecomClientC\TelecomClientC\obj\Debug\TelecomClientC.exe
+C:\Google Drive\ECSE 414\TelecomClientC\TelecomClientC\obj\Debug\TelecomClientC.pdb
+C:\Google Drive\ECSE 414\TelecomClientC\TelecomClientC\bin\Debug\TelecomClientC.exe
+C:\Google Drive\ECSE 414\TelecomClientC\TelecomClientC\bin\Debug\TelecomClientC.pdb
+C:\Google Drive\ECSE 414\TelecomClientC\TelecomClientC\obj\Debug\TelecomClientC.csprojResolveAssemblyReference.cache
+C:\Google Drive\ECSE 414\TelecomClientC\TelecomClientC\obj\Debug\TelecomClientC.Form1.resources
+C:\Google Drive\ECSE 414\TelecomClientC\TelecomClientC\obj\Debug\TelecomClientC.Properties.Resources.resources
+C:\Google Drive\ECSE 414\TelecomClientC\TelecomClientC\obj\Debug\TelecomClientC.csproj.GenerateResource.Cache
+C:\Users\ringg_000\Desktop\ECSE 414\Project\TelecomClientC\TelecomClientC\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ringg_000\Desktop\ECSE 414\Project\TelecomClientC\TelecomClientC\bin\Debug\Newtonsoft.Json.xml
