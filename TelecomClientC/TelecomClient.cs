@@ -33,12 +33,15 @@ public class TelecomClient
     private int myPrivatePort;
     private bool isUDPListenerStarted = false;
     public List<User> connectedUsers = new List<User>();
+    private Boolean userListUpdated = false;
+
     public User targetUser;
     public string destinationIP = "";
     public int destinationPort = 0;
     public bool sameClient = false;
     public string userlistString = "";
     private int silence = 0;
+    public String messageBuffer="";
 
     public TelecomClient(String serverIP)
     {
@@ -120,6 +123,15 @@ public class TelecomClient
         {
             Byte[] receiveBytes = udpClient.Receive(ref RemoteIpEndPoint);
             string returnData = System.Text.Encoding.ASCII.GetString(receiveBytes);
+            String[] split = returnData.Split(',');
+            if (split.Length < 1)
+            {
+                continue;
+            }
+            if (split[0] != "!Heartbeat!")
+            {
+                messageBuffer += returnData;
+            }
             Console.WriteLine("UDP Received:" + returnData);
             //this.mainForm.txtChat.Text += returnData;
         }
@@ -420,6 +432,7 @@ public class TelecomClient
 
                         //update the whole userlist
                         connectedUsers = tempUserList;
+                        userListUpdated = true;
 
                     } else
                     {
@@ -482,6 +495,19 @@ public class TelecomClient
         {
             destinationIP = target_publicIp;
             destinationPort = target_publicPort;
+        }
+    }
+
+    public List<User> getUserListUpdate()
+    {
+        if (userListUpdated == false)
+        {
+            return null;
+        }
+        else
+        {
+            userListUpdated = false;
+            return connectedUsers;
         }
     }
 

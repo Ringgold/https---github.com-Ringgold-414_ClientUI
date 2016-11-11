@@ -57,6 +57,7 @@ namespace TelecomClientC
         private void Button2_Click(object sender, EventArgs e)
         {
             client.sendMessageTCP("userList");
+            
         }
 
 
@@ -103,7 +104,24 @@ namespace TelecomClientC
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            this.textBox2.AppendText(client.userlistString);
+            //this.textBox2.AppendText(client.userlistString);
+            String message = client.messageBuffer;
+            if (!String.IsNullOrEmpty(message))
+            {
+                this.txtMain.Text += message;
+                client.messageBuffer = "";
+            }
+
+            List<User> connectedUsers = client.getUserListUpdate();
+            if (connectedUsers != null)
+            {
+                this.listBox1.Items.Clear();
+                for(int i = 0; i < connectedUsers.Count; i++)
+                {
+                    User cur = connectedUsers[i];
+                    this.listBox1.Items.Add(cur.getUserName());
+                }
+            }
         }
     }
 }
