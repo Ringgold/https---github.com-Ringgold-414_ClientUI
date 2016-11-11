@@ -236,7 +236,6 @@ public class TelecomClient
                 //perform actions based on type.
                 string response = handleResponse(currentLine);
                 
-
                 if (response != "Silence")
                 {
                     Console.WriteLine(response);
@@ -251,9 +250,7 @@ public class TelecomClient
                         Console.WriteLine("Received:" + currentLine);
                         Console.WriteLine("In busy waiting");
                     }
-                }
-
-                
+                }   
                 //this.mainForm.txtMain.Text += currentLine + Constants.vbNewLine;
             }
             //stream.Read(data, 0, 2)
