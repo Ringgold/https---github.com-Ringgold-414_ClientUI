@@ -50,6 +50,7 @@ namespace TelecomClientC
             //Check if txtServerIP.Text is null
             Thread trd = new Thread(connectUDP);
             trd.Start();
+            timer1.Enabled = true;
         }
 
         //Get UserList
@@ -98,6 +99,11 @@ namespace TelecomClientC
                 Console.WriteLine(this.txtInput.Text + " " + client.destinationIP + " " + client.destinationPort);
                 this.txtInput.Text = String.Empty;
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            this.textBox2.AppendText(client.userlistString);
         }
     }
 }

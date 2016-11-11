@@ -30,6 +30,7 @@ namespace TelecomClientC
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.Label2 = new System.Windows.Forms.Label();
             this.Label1 = new System.Windows.Forms.Label();
             this.txtMyName = new System.Windows.Forms.TextBox();
@@ -43,6 +44,8 @@ namespace TelecomClientC
             this.label3 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // Label2
@@ -119,7 +122,7 @@ namespace TelecomClientC
             // 
             this.txtMain.Location = new System.Drawing.Point(24, 64);
             this.txtMain.Name = "txtMain";
-            this.txtMain.Size = new System.Drawing.Size(815, 284);
+            this.txtMain.Size = new System.Drawing.Size(592, 284);
             this.txtMain.TabIndex = 22;
             this.txtMain.Text = "";
             // 
@@ -160,11 +163,25 @@ namespace TelecomClientC
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(622, 65);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(216, 283);
+            this.textBox2.TabIndex = 28;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 50;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 573);
+            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label3);
@@ -205,6 +222,8 @@ namespace TelecomClientC
         internal System.Windows.Forms.Label label3;
         internal System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

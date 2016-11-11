@@ -37,8 +37,7 @@ public class TelecomClient
     public string destinationIP = "";
     public int destinationPort = 0;
     public bool sameClient = false;
-
-    private bool startUDPListener = false;
+    public string userlistString = "";
     private int silence = 0;
 
     public TelecomClient(String serverIP)
@@ -354,10 +353,10 @@ public class TelecomClient
             Console.WriteLine("Update Userlist");
             result = "Connection Status is updated";
 
-            if (startUDPListener == false)
+            if (isUDPListenerStarted == false)
             {
                 startUDP_listener();
-                startUDPListener = true;
+                isUDPListenerStarted = true;
             }
 
         } else 
@@ -374,6 +373,7 @@ public class TelecomClient
                 } else
                 {
                     connectedUsers.Add(tempUser);
+
                     result = "New user " + tempUser.getUserName() + " added to UserList.";
                 }
 
@@ -423,12 +423,6 @@ public class TelecomClient
 
                         //update the whole userlist
                         connectedUsers = tempUserList;
-
-                        //Check Method
-                        /*foreach(var user in connectedUsers) {
-                            Console.WriteLine("DISPLAY THE USERLIST");
-                            Console.WriteLine(user.getUserName());
-                        }*/
 
                     } else
                     {
