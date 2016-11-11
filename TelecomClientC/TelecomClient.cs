@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using System.Threading;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Linq;
+
 public class TelecomClient
 {
     public bool connected;
@@ -166,6 +168,13 @@ public class TelecomClient
             // Which one of these two hosts responded?
             this.connectionString = returnData.ToString();
             User tempUser = JsonConvert.DeserializeObject<User>(message);
+
+            //update user's info of public and private IP
+            myPrivateIP = tempUser.getPrivateIp();
+            myPublicIP = tempUser.getPublicIp();
+            myPrivatePort = tempUser.getPrivatePort();
+            myPublicPort = tempUser.getPublicPort();
+
             Console.WriteLine(("This is the message you received " + this.connectionString));
             Console.WriteLine(("This message was sent from " + RemoteIpEndPoint.Address.ToString() + " on their port number " + RemoteIpEndPoint.Port.ToString()));
             if ((returnData.ToString() == "SUCCESS"))
@@ -293,12 +302,15 @@ public class TelecomClient
     {
         string result = "";
 
+        //Different types of messages client can receive
         string loginNotice = "new_log_in:";
         string logoffNotice = "log_off:";
         string connectNotice = "connection_from:";
         string success = "SERVER_SUCCESS";
         string fail = "SERVER_FAIL";
         string userlist = "userList:";
+        string heartBeat = "heartBeat:";
+        string actualMessage = "actualMessage:";
 
         int loginExist = message.IndexOf(loginNotice);
         int logoffExist = message.IndexOf(logoffNotice);
@@ -306,6 +318,8 @@ public class TelecomClient
         int successExist = message.IndexOf(success);
         int failExist = message.IndexOf(fail);
         int userListExist = message.IndexOf(userlist);
+        int heartBeatExist = message.IndexOf(heartBeat);
+        int actualMessageExist = message.IndexOf(actualMessage);
 
         if (failExist >= 0 || successExist >= 0)
         {
@@ -384,12 +398,14 @@ public class TelecomClient
 
                     } else
                     {
+                        
                         //Connection received from a user, save this user as the target User
                         if (connectExist >= 0)
                         {
                             message = message.Substring(connectNotice.Length);
-                            User tempUser = JsonConvert.DeserializeObject<User>(message);
-                            targetUser = tempUser;
+                            //Find the user with this name and save it as the target user to send message to
+                            User temp = connectedUsers.FirstOrDefault(o => o.getUserName() == message);
+                            targetUser = temp;
                         } else
                         {
                             //Do Nothing

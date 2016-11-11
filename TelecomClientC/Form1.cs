@@ -77,13 +77,14 @@ namespace TelecomClientC
         private void button5_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Clicked");
-            //txtInput.Text = String.Empty;
+            client.getDestinationInfo(client.targetUser);
             if (client.destinationIP == "" || client.destinationPort == 0)
             {
                 Console.WriteLine("No target detected.");
             } else
             {
                 client.sendMessage(this.txtInput.Text, client.destinationIP, client.destinationPort);
+                Console.WriteLine(this.txtInput.Text + " " + client.destinationIP + " " + client.destinationPort);
                 this.txtInput.Text = String.Empty;
             }
         }
