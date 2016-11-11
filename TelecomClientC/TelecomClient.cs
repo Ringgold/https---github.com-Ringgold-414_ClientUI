@@ -132,6 +132,7 @@ public class TelecomClient
             {
                 messageBuffer += returnData;
             }
+
             Console.WriteLine("UDP Received:" + returnData);
             //this.mainForm.txtChat.Text += returnData;
         }
@@ -181,7 +182,7 @@ public class TelecomClient
             string returnData = System.Text.Encoding.ASCII.GetString(receiveBytes);
             // Which one of these two hosts responded?
             this.connectionString = returnData.ToString();
-            User tempUser = JsonConvert.DeserializeObject<User>(message);
+            User tempUser = JsonConvert.DeserializeObject<User>(connectionString);
 
             //update user's info of public and private IP
             myPrivateIP = tempUser.getPrivateIp();
@@ -382,7 +383,7 @@ public class TelecomClient
                 } else
                 {
                     connectedUsers.Add(tempUser);
-
+                    this.userListUpdated = true;
                     result = "New user " + tempUser.getUserName() + " added to UserList.";
                 }
 
@@ -397,6 +398,7 @@ public class TelecomClient
                     if (connectedUsers.IndexOf(tempUser) >= 0)
                     {
                         connectedUsers.Remove(tempUser);
+                        this.userListUpdated = true;
                         result = "Current logoff user "+ tempUser.getUserName() + " has been deleted from the UserList.";
                     }
                     else
@@ -432,7 +434,7 @@ public class TelecomClient
 
                         //update the whole userlist
                         connectedUsers = tempUserList;
-                        userListUpdated = true;
+                        this.userListUpdated = true;
 
                     } else
                     {
@@ -511,4 +513,9 @@ public class TelecomClient
         }
     }
 
+
+    public String getUsername()
+    {
+        return this.userName;
+    }
 }

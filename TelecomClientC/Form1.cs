@@ -96,7 +96,8 @@ namespace TelecomClientC
                 Console.WriteLine("No target detected.");
             } else
             {
-                client.sendMessageUDP(this.txtInput.Text, client.destinationIP, client.destinationPort);
+                client.sendMessageUDP(client.getUsername() + ":" + this.txtInput.Text + "\n", client.destinationIP, client.destinationPort);
+                this.txtMain.Text += (this.txtInput.Text + "\n");
                 Console.WriteLine(this.txtInput.Text + " " + client.destinationIP + " " + client.destinationPort);
                 this.txtInput.Text = String.Empty;
             }
