@@ -65,6 +65,17 @@ namespace TelecomClientC
             client.sendMessageTCP("connect:" + this.TextBox1.Text);
             User temp = client.connectedUsers.FirstOrDefault(o => o.getUserName() == this.TextBox1.Text);
             client.targetUser = temp;
+
+            client.getDestinationInfo(client.targetUser);
+            if (client.destinationIP == "" || client.destinationPort == 0)
+            {
+                Console.WriteLine("ERROR: No targetuser Existing (Sender).");
+            }
+            else
+            {
+                client.sendMessageUDP("Sender Punch", client.destinationIP, client.destinationPort);
+                Console.WriteLine("Sender Punch" + " " + client.destinationIP + " " + client.destinationPort);
+            }
         }
 
         //Disconnect that one particular user
@@ -83,7 +94,7 @@ namespace TelecomClientC
                 Console.WriteLine("No target detected.");
             } else
             {
-                client.sendMessage(this.txtInput.Text, client.destinationIP, client.destinationPort);
+                client.sendMessageUDP(this.txtInput.Text, client.destinationIP, client.destinationPort);
                 Console.WriteLine(this.txtInput.Text + " " + client.destinationIP + " " + client.destinationPort);
                 this.txtInput.Text = String.Empty;
             }

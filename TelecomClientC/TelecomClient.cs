@@ -38,6 +38,9 @@ public class TelecomClient
     public int destinationPort = 0;
     public bool sameClient = false;
 
+    private bool startUDPListener = false;
+    private int silence = 0;
+
     public TelecomClient(String serverIP)
     {
         count = 0;
@@ -69,7 +72,7 @@ public class TelecomClient
         }
     }
 
-    public void sendMessage(string content, string ip, int port)
+    public void sendMessageUDP(string content, string ip, int port)
     {
         udpClient.Connect(ip, port);
         byte[] sendBytes = System.Text.Encoding.UTF8.GetBytes(content);
@@ -233,10 +236,25 @@ public class TelecomClient
                 //parse return message according to the message type
                 //perform actions based on type.
                 string response = handleResponse(currentLine);
-                Console.WriteLine(response);
+                
 
-                Console.WriteLine("Received:" + currentLine);
-                Console.WriteLine("In busy waiting");
+                if (response != "Silence")
+                {
+                    Console.WriteLine(response);
+                    Console.WriteLine("Received:" + currentLine);
+                    Console.WriteLine("In busy waiting");
+                } else
+                {
+                    silence++;
+                    if (silence >= 15)
+                    {
+                        silence = 0;
+                        Console.WriteLine("Received:" + currentLine);
+                        Console.WriteLine("In busy waiting");
+                    }
+                }
+
+                
                 //this.mainForm.txtMain.Text += currentLine + Constants.vbNewLine;
             }
             //stream.Read(data, 0, 2)
@@ -311,6 +329,7 @@ public class TelecomClient
         string userlist = "userList:";
         string heartBeat = "heartBeat:";
         string actualMessage = "actualMessage:";
+        string checkNotice = "check";
 
         int loginExist = message.IndexOf(loginNotice);
         int logoffExist = message.IndexOf(logoffNotice);
@@ -320,13 +339,28 @@ public class TelecomClient
         int userListExist = message.IndexOf(userlist);
         int heartBeatExist = message.IndexOf(heartBeat);
         int actualMessageExist = message.IndexOf(actualMessage);
+        int checkNoticeExist = message.IndexOf(checkNotice);
 
-        if (failExist >= 0 || successExist >= 0)
+        if (failExist >= 0)
         {
-            //Do Nothing if is only a success or fail message
+            
+            //Do Nothing if is only a fail message
             result = "Connection Status is updated";
         }
-        else
+        else if (successExist >= 0)
+        {
+            //Update the UserList if server connection is successful
+            sendMessageTCP("userList");
+            Console.WriteLine("Update Userlist");
+            result = "Connection Status is updated";
+
+            if (startUDPListener == false)
+            {
+                startUDP_listener();
+                startUDPListener = true;
+            }
+
+        } else 
         {
             if (loginExist >= 0)
             {
@@ -340,7 +374,7 @@ public class TelecomClient
                 } else
                 {
                     connectedUsers.Add(tempUser);
-                    result = "New user" + tempUser.getUserName() + "added to UserList.";
+                    result = "New user " + tempUser.getUserName() + " added to UserList.";
                 }
 
             }
@@ -354,11 +388,11 @@ public class TelecomClient
                     if (connectedUsers.IndexOf(tempUser) >= 0)
                     {
                         connectedUsers.Remove(tempUser);
-                        result = "Current logoff user"+ tempUser.getUserName() + "has been deleted from the UserList.";
+                        result = "Current logoff user "+ tempUser.getUserName() + " has been deleted from the UserList.";
                     }
                     else
                     {
-                        result = "UserList error detected, user" + tempUser.getUserName() + "does not exist in UserList, cannot delete.";
+                        result = "UserList error detected, user " + tempUser.getUserName() + " does not exist in UserList, cannot delete.";
                     }
                 } else
                 {
@@ -406,9 +440,27 @@ public class TelecomClient
                             //Find the user with this name and save it as the target user to send message to
                             User temp = connectedUsers.FirstOrDefault(o => o.getUserName() == message);
                             targetUser = temp;
+                            result = "Connection from " + targetUser.getUserName() + " is received";
+
+                            getDestinationInfo(targetUser);
+                            if (destinationIP == "" || destinationPort == 0)
+                            {
+                                Console.WriteLine("ERROR: Targetuser not existing.");
+                            }
+                            else
+                            {
+                                //Send punch through message
+                                sendMessageUDP("Receiver Punch Through", destinationIP, destinationPort);
+                                Console.WriteLine("Receiver Punch Through" + " " + destinationIP + " " + destinationPort);
+                            }
+
+                            //result = "Connection from " + message + " is received";
                         } else
                         {
-                            //Do Nothing
+                            if (checkNoticeExist >= 0)
+                            {
+                                result = "Silence";
+                            }
                         }
                     }
                 }
