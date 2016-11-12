@@ -14,6 +14,7 @@ namespace TelecomClientC
     public partial class Form1 : Form
     {
         TelecomClient client;
+        public static bool connectionTarget = false;
         public Form1()
         {
             InitializeComponent();
@@ -51,6 +52,7 @@ namespace TelecomClientC
             Thread trd = new Thread(connectUDP);
             trd.Start();
             timer1.Enabled = true;
+            timer2.Enabled = true;
         }
 
         //Get UserList
@@ -76,6 +78,7 @@ namespace TelecomClientC
             else
             {
                 client.sendMessageUDP("Sender Punch", client.destinationIP, client.destinationPort);
+                connectionTarget = true;
                 Console.WriteLine("Sender Punch" + " " + client.destinationIP + " " + client.destinationPort);
             }
         }
@@ -96,8 +99,8 @@ namespace TelecomClientC
                 Console.WriteLine("No target detected.");
             } else
             {
-                client.sendMessageUDP(client.getUsername() + ":" + this.txtInput.Text + "\n", client.destinationIP, client.destinationPort);
-                this.txtMain.Text += (this.txtInput.Text + "\n");
+                client.sendMessageUDP(TelecomClient.messageNotice + client.getUsername() + ": " + this.txtInput.Text + "\n", client.destinationIP, client.destinationPort);
+                this.txtMain.Text += (client.getUsername() + ": " + this.txtInput.Text + "\n");
                 Console.WriteLine(this.txtInput.Text + " " + client.destinationIP + " " + client.destinationPort);
                 this.txtInput.Text = String.Empty;
             }
@@ -122,6 +125,14 @@ namespace TelecomClientC
                     User cur = connectedUsers[i];
                     this.listBox1.Items.Add(cur.getUserName());
                 }
+            }
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (connectionTarget)
+            {
+                client.sendMessageUDP(TelecomClient.heartBeatNotice, client.destinationIP, client.destinationPort);
             }
         }
     }

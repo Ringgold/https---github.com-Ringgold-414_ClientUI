@@ -46,6 +46,7 @@ namespace TelecomClientC
             this.button5 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // Label2
@@ -176,6 +177,11 @@ namespace TelecomClientC
             this.listBox1.Size = new System.Drawing.Size(216, 277);
             this.listBox1.TabIndex = 28;
             // 
+            // timer2
+            // 
+            this.timer2.Interval = 5000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -224,6 +230,7 @@ namespace TelecomClientC
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 
