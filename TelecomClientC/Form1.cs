@@ -59,6 +59,7 @@ namespace TelecomClientC
         private void Button2_Click(object sender, EventArgs e)
         {
             client.sendMessageTCP("userList");
+            
         }
 
 
@@ -98,12 +99,8 @@ namespace TelecomClientC
                 Console.WriteLine("No target detected.");
             } else
             {
-<<<<<<< HEAD
                 client.sendMessageUDP(TelecomClient.messageNotice + client.getUsername() + ": " + this.txtInput.Text + "\n", client.destinationIP, client.destinationPort);
                 this.txtMain.Text += (client.getUsername() + ": " + this.txtInput.Text + "\n");
-=======
-                client.sendMessageUDP(this.txtInput.Text, client.destinationIP, client.destinationPort);
->>>>>>> origin/master
                 Console.WriteLine(this.txtInput.Text + " " + client.destinationIP + " " + client.destinationPort);
                 this.txtInput.Text = String.Empty;
             }
@@ -111,7 +108,24 @@ namespace TelecomClientC
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            this.textBox2.AppendText(client.userlistString);
+            //this.textBox2.AppendText(client.userlistString);
+            String message = client.messageBuffer;
+            if (!String.IsNullOrEmpty(message))
+            {
+                this.txtMain.Text += message;
+                client.messageBuffer = "";
+            }
+
+            List<User> connectedUsers = client.getUserListUpdate();
+            if (connectedUsers != null)
+            {
+                this.listBox1.Items.Clear();
+                for(int i = 0; i < connectedUsers.Count; i++)
+                {
+                    User cur = connectedUsers[i];
+                    this.listBox1.Items.Add(cur.getUserName());
+                }
+            }
         }
 
         //Timer For heartBeat
