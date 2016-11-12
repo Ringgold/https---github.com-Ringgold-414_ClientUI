@@ -34,15 +34,13 @@ public class TelecomClient
     private int myPrivatePort;
     private bool isUDPListenerStarted = false;
     public List<User> connectedUsers = new List<User>();
-    private Boolean userListUpdated = false;
-
     public User targetUser;
     public string destinationIP = "";
     public int destinationPort = 0;
     public bool sameClient = false;
     public string userlistString = "";
     private int silence = 0;
-    public String messageBuffer="";
+    private bool beatReceived = false;
 
     public static string messageNotice = "messageNotice:";
     public static string heartBeatNotice = "hearBeat:";
@@ -123,10 +121,14 @@ public class TelecomClient
     {
         IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
         Console.WriteLine("UDP Listener started");
+        string heartBeat = "heartBeat:";
+        string actualMessage = "actualMessage";
+
         while (true)
         {
             Byte[] receiveBytes = udpClient.Receive(ref RemoteIpEndPoint);
             string returnData = System.Text.Encoding.ASCII.GetString(receiveBytes);
+<<<<<<< HEAD
 
             int messageCheck = returnData.IndexOf(messageNotice);
             int heartBeatCheck = returnData.IndexOf(heartBeatNotice);
@@ -145,6 +147,27 @@ public class TelecomClient
             }
 
             //Console.WriteLine("UDP Received:" + returnData);
+=======
+            int heartBeatExist = returnData.IndexOf(heartBeat);
+            int actualMessageExist = returnData.IndexOf(actualMessage);
+            if (heartBeatExist >= 0)
+            {
+                beatReceived = true;
+            }
+            else
+            {
+                beatReceived = false;
+                if (actualMessageExist >= 0)
+                {
+
+                }
+            }
+
+            if (!beatReceived)
+            {
+                Console.WriteLine("UDP Received:" + returnData);
+            }
+>>>>>>> origin/master
             //this.mainForm.txtChat.Text += returnData;
         }
     }
@@ -193,7 +216,7 @@ public class TelecomClient
             string returnData = System.Text.Encoding.ASCII.GetString(receiveBytes);
             // Which one of these two hosts responded?
             this.connectionString = returnData.ToString();
-            User tempUser = JsonConvert.DeserializeObject<User>(connectionString);
+            User tempUser = JsonConvert.DeserializeObject<User>(this.connectionString);
 
             //update user's info of public and private IP
             myPrivateIP = tempUser.getPrivateIp();
@@ -261,6 +284,7 @@ public class TelecomClient
                 //perform actions based on type.
                 string response = handleResponse(currentLine);
                 
+
                 if (response != "Silence")
                 {
                     Console.WriteLine(response);
@@ -275,7 +299,9 @@ public class TelecomClient
                         Console.WriteLine("Received:" + currentLine);
                         Console.WriteLine("In busy waiting");
                     }
-                }   
+                }
+
+                
                 //this.mainForm.txtMain.Text += currentLine + Constants.vbNewLine;
             }
             //stream.Read(data, 0, 2)
@@ -391,7 +417,7 @@ public class TelecomClient
                 } else
                 {
                     connectedUsers.Add(tempUser);
-                    this.userListUpdated = true;
+
                     result = "New user " + tempUser.getUserName() + " added to UserList.";
                 }
 
@@ -413,9 +439,14 @@ public class TelecomClient
                     //Remove te user from the userlist and handle the exception error
                     if (findIndexOfList(tempUser, connectedUsers) >= 0)
                     {
+<<<<<<< HEAD
                         connectedUsers.RemoveAt(findIndexOfList(tempUser, connectedUsers));
                         this.userListUpdated = true;
                         result = "Current logoff user "+ tempUser.getUserName() + " has been deleted from the UserList.";
+=======
+                        connectedUsers.Remove(tempUser);
+                        result = "Current logoff user " + tempUser.getUserName() + " has been deleted from the UserList.";
+>>>>>>> origin/master
                     }
                     else
                     {
@@ -450,7 +481,6 @@ public class TelecomClient
 
                         //update the whole userlist
                         connectedUsers = tempUserList;
-                        this.userListUpdated = true;
 
                     } else
                     {
@@ -517,6 +547,7 @@ public class TelecomClient
         }
     }
 
+<<<<<<< HEAD
     public List<User> getUserListUpdate()
     {
         if (userListUpdated == false)
@@ -548,4 +579,6 @@ public class TelecomClient
         }
         return -1;
     }
+=======
+>>>>>>> origin/master
 }
