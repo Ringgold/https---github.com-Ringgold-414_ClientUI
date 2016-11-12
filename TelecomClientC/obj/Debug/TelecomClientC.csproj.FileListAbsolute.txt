@@ -24,3 +24,13 @@ C:\Google Drive\ECSE 414\TelecomClientC\TelecomClientC\obj\Debug\TelecomClientC.
 C:\Google Drive\ECSE 414\TelecomClientC\TelecomClientC\obj\Debug\TelecomClientC.csproj.GenerateResource.Cache
 C:\Users\ringg_000\Desktop\ECSE 414\Project\TelecomClientC\TelecomClientC\bin\Debug\Newtonsoft.Json.dll
 C:\Users\ringg_000\Desktop\ECSE 414\Project\TelecomClientC\TelecomClientC\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ringg_000\Desktop\ECSE 414\Project\414_Client\https---github.com-Ringgold-414_ClientUI.git\TelecomClientC\bin\Debug\TelecomClientC.exe
+C:\Users\ringg_000\Desktop\ECSE 414\Project\414_Client\https---github.com-Ringgold-414_ClientUI.git\TelecomClientC\bin\Debug\TelecomClientC.pdb
+C:\Users\ringg_000\Desktop\ECSE 414\Project\414_Client\https---github.com-Ringgold-414_ClientUI.git\TelecomClientC\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ringg_000\Desktop\ECSE 414\Project\414_Client\https---github.com-Ringgold-414_ClientUI.git\TelecomClientC\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ringg_000\Desktop\ECSE 414\Project\414_Client\https---github.com-Ringgold-414_ClientUI.git\TelecomClientC\obj\Debug\TelecomClientC.csprojResolveAssemblyReference.cache
+C:\Users\ringg_000\Desktop\ECSE 414\Project\414_Client\https---github.com-Ringgold-414_ClientUI.git\TelecomClientC\obj\Debug\TelecomClientC.Form1.resources
+C:\Users\ringg_000\Desktop\ECSE 414\Project\414_Client\https---github.com-Ringgold-414_ClientUI.git\TelecomClientC\obj\Debug\TelecomClientC.Properties.Resources.resources
+C:\Users\ringg_000\Desktop\ECSE 414\Project\414_Client\https---github.com-Ringgold-414_ClientUI.git\TelecomClientC\obj\Debug\TelecomClientC.csproj.GenerateResource.Cache
+C:\Users\ringg_000\Desktop\ECSE 414\Project\414_Client\https---github.com-Ringgold-414_ClientUI.git\TelecomClientC\obj\Debug\TelecomClientC.exe
+C:\Users\ringg_000\Desktop\ECSE 414\Project\414_Client\https---github.com-Ringgold-414_ClientUI.git\TelecomClientC\obj\Debug\TelecomClientC.pdb

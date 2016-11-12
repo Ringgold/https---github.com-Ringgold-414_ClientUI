@@ -462,7 +462,7 @@ public class TelecomClient
                             //Find the user with this name and save it as the target user to send message to
                             User temp = connectedUsers.FirstOrDefault(o => o.getUserName() == message);
                             targetUser = temp;
-                            result = "Connection from " + targetUser.getUserName() + " is received";
+                            result = "Connection from " + targetUser.getUserName() + " is received\n";
                             messageBuffer += result;
                             getDestinationInfo(targetUser);
                             if (destinationIP == "" || destinationPort == 0)
@@ -501,6 +501,7 @@ public class TelecomClient
 
         if (target_publicIp == myPublicIP)
         {
+            sameClient = false;
             destinationIP = target_privateIp;
             destinationPort = target_privatePort;
         }
@@ -512,9 +513,12 @@ public class TelecomClient
         }
         else
         {
+            sameClient = false;
             destinationIP = target_publicIp;
             destinationPort = target_publicPort;
         }
+
+        Console.WriteLine("If 2 Clients are the same Client: "+sameClient);
     }
 
     public List<User> getUserListUpdate()
