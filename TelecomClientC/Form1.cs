@@ -41,7 +41,6 @@ namespace TelecomClientC
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
 
         }
 
@@ -82,12 +81,18 @@ namespace TelecomClientC
                 Console.WriteLine("Sender Punch" + " " + client.destinationIP + " " + client.destinationPort);
             }
         }
-
+        private void form_close(object sender, EventArgs e)
+        {
+            client.sendMessageTCP("exit");
+            client.close();
+            Application.Exit();
+        }
         //Disconnect that one particular user
         private void button4_Click(object sender, EventArgs e)
         {
             client.sendMessageTCP("exit");
             client.close();
+            Application.Exit();
         }
         
         private void button5_Click(object sender, EventArgs e)
@@ -133,7 +138,14 @@ namespace TelecomClientC
         {
             if (connectionTarget)
             {
-                client.sendMessageUDP(TelecomClient.heartBeatNotice, client.destinationIP, client.destinationPort);
+                try
+                {
+                    client.sendMessageUDP(TelecomClient.heartBeatNotice, client.destinationIP, client.destinationPort);
+                } catch
+                {
+                    Exception ex;
+                }
+                
             }
         }
         

@@ -110,7 +110,7 @@ namespace TelecomClientC
             this.Button1.Text = "Login";
             this.Button1.UseVisualStyleBackColor = true;
             this.Button1.Click += new System.EventHandler(this.Button1_Click);
-            // 
+          
             // txtInput
             // 
             this.txtInput.Location = new System.Drawing.Point(24, 354);
@@ -206,7 +206,7 @@ namespace TelecomClientC
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.form_close);
         }
 
         private void OnClosed(EventHandler eventHandler)
