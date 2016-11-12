@@ -128,6 +128,7 @@ namespace TelecomClientC
             }
         }
 
+        //Timer For heartBeat
         private void timer2_Tick(object sender, EventArgs e)
         {
             if (connectionTarget)
@@ -135,5 +136,6 @@ namespace TelecomClientC
                 client.sendMessageUDP(TelecomClient.heartBeatNotice, client.destinationIP, client.destinationPort);
             }
         }
+        
     }
 }
